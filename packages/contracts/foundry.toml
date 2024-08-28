@@ -1,0 +1,29 @@
+[profile.default]
+gas_reports = ["*"]
+# solc = "0.8.24"
+auto_detect_solc = true
+ffi = false
+fuzz_runs = 256
+optimizer = true
+optimizer_runs = 1200
+verbosity = 2
+src = "src"
+test = "test"
+out = "out"
+viaIR = true
+allow_paths = [
+  # pnpm symlinks to the project root's node_modules
+  "../../node_modules",
+  # template uses linked mud packages from within the mud monorepo
+  "../../../../packages",
+  # projects created from this template and using linked mud packages
+  "../../../mud/packages",
+]
+extra_output_files = [
+  "abi",
+  "evm.bytecode"
+]
+fs_permissions = [{ access = "read", path = "./"}]
+
+[profile.forklocal]
+eth_rpc_url = "http://127.0.0.1:8545"
